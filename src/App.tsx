@@ -1,6 +1,6 @@
 import Gameboard from "./components/Gameboard"
 import Header from "./components/Header"
-import "./Index.css"
+import "./index.css"
 
 function App() {
  return (
