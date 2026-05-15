@@ -10,13 +10,13 @@ export type gameCard = {
 
 export const GameContext = createContext({
  cards: [] as gameCard[],
- setCards: (value: gameCard[]) => {},
+ setCards: (_value: gameCard[]) => {},
  selectedGameCards: [] as gameCard[],
- setSelectedGameCards: (value: gameCard[]) => {},
+ setSelectedGameCards: (_value: gameCard[]) => {},
  gameCompleted: false,
- setGameCompleted: (value: boolean) => {},
+ setGameCompleted: (_value: boolean) => {},
  initializeGame: () => {},
  gameStarted: false,
- setGameStarted: (value: boolean) => {},
- handleClick: (card: gameCard) => {},
+ setGameStarted: (_value: boolean) => {},
+ handleClick: (_card: gameCard) => {},
 })
