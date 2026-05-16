@@ -11,6 +11,7 @@ export default function Gameboard() {
   handleClick,
   gameCompleted,
   setGameCompleted,
+  scores,
  } = useContext(GameContext)
 
  if (gameStarted !== true) {
@@ -30,9 +31,18 @@ export default function Gameboard() {
  }
 
  if (gameCompleted) {
+  const winner =
+   scores[0] > scores[1]
+    ? "Spiller 1"
+    : scores[1] > scores[0]
+      ? "Spiller 2"
+      : "Uafgjort"
   return (
    <div className="flex flex-col items-center gap-4">
-    <h2 className="text-4xl font-bold text-green-400">🎉 SUCCESS!</h2>
+    <h2 className="text-4xl font-bold text-green-400">🎉 {winner} vinder!</h2>
+    <p className="text-zinc-400">
+     {scores[0]} - {scores[1]}
+    </p>
     <button
      onClick={() => {
       initializeGame()
