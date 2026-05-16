@@ -10,8 +10,11 @@ export function GameProvider({ children }: { children: ReactNode }) {
  const [gameStarted, setGameStarted] = useState(false)
  const [currentPlayer, setCurrentPlayer] = useState(1)
  const [scores, setScores] = useState([0, 0])
+ const [wins, setWins] = useState([0, 0])
+ const [showStartMessage, setShowStartMessage] = useState(false)
  const emojis = ["🍇", "🍈", "🍉", "🍊", "🍋", "🍍", "🍎", "🍐"]
  const nextId = useRef(1)
+ const startingPlayer = useRef(1)
 
  function handleClick(card: gameCard) {
   if (selectedGameCards.length === 2) return
@@ -39,6 +42,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
    if (updatedCards.every((c) => c.isMatched)) {
     setGameCompleted(true)
+    const newWins = [...wins]
+    if (newScores[0] > newScores[1]) {
+     newWins[0] += 1
+    } else if (newScores[1] > newScores[0]) {
+     newWins[1] += 1
+    }
+    setWins(newWins)
    }
   } else {
    setTimeout(() => {
@@ -56,9 +66,12 @@ export function GameProvider({ children }: { children: ReactNode }) {
  }
 
  function initializeGame() {
+  setShowStartMessage(true)
+  setTimeout(() => setShowStartMessage(false), 2000)
   setGameCompleted(false)
   setSelectedGameCards([])
-  setCurrentPlayer(1)
+  setCurrentPlayer(startingPlayer.current)
+  startingPlayer.current = startingPlayer.current === 1 ? 2 : 1
   setScores([0, 0])
   const doubledEmojis = [...emojis, ...emojis]
   const newCards = doubledEmojis.map((emoji, _index) => ({
@@ -88,6 +101,10 @@ export function GameProvider({ children }: { children: ReactNode }) {
     setCurrentPlayer,
     scores,
     setScores,
+    wins,
+    setWins,
+    showStartMessage,
+    setShowStartMessage,
    }}
   >
    {children}

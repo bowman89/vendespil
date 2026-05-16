@@ -26,13 +26,13 @@ export default function Card({
     }}
    >
     <div
-     className="absolute inset-0 bg-[#1E3A5F] border-2 border-[#2D5A8E] rounded-2xl flex items-center justify-center text-2xl sm:text-5xl text-white"
+     className="absolute inset-0 bg-[#1E3A5F] border-2 border-[#2D5A8E] rounded-2xl flex items-center justify-center text-4xl sm:text-5xl text-white"
      style={{ backfaceVisibility: "hidden" }}
     >
      ?
     </div>
     <div
-     className={`absolute inset-0 rounded-2xl flex items-center justify-center text-2xl sm:text-5xl border-2 ${isMatched ? "bg-[#14532D] border-green-500" : "bg-[#1E40AF] border-blue-400"}`}
+     className={`absolute inset-0 rounded-2xl flex items-center justify-center text-4xl sm:text-5xl border-2 ${isMatched ? "bg-[#14532D] border-green-500" : "bg-[#1E40AF] border-blue-400"}`}
      style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
     >
      {cardFront}

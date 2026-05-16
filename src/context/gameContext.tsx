@@ -23,4 +23,8 @@ export const GameContext = createContext({
  setCurrentPlayer: (_value: number) => {},
  scores: [0, 0],
  setScores: (_value: number[]) => {},
+ wins: [0, 0],
+ setWins: (_value: number[]) => {},
+ showStartMessage: false,
+ setShowStartMessage: (_value: boolean) => {},
 })

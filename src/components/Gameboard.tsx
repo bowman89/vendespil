@@ -12,6 +12,8 @@ export default function Gameboard() {
   gameCompleted,
   setGameCompleted,
   scores,
+  showStartMessage,
+  currentPlayer,
  } = useContext(GameContext)
 
  if (gameStarted !== true) {
@@ -39,7 +41,9 @@ export default function Gameboard() {
       : "Uafgjort"
   return (
    <div className="flex flex-col items-center gap-4">
-    <h2 className="text-4xl font-bold text-green-400">🎉 {winner} vinder!</h2>
+    <h2 className="text-4xl font-bold text-green-400">
+     {scores[0] === scores[1] ? "🤝 Uafgjort!" : `🎉 ${winner} vinder!`}
+    </h2>
     <p className="text-zinc-400">
      {scores[0]} - {scores[1]}
     </p>
@@ -57,16 +61,28 @@ export default function Gameboard() {
  }
 
  return (
-  <div className="grid grid-cols-4 gap-2">
-   {cards.map((card) => (
-    <Card
-     key={card.id}
-     cardFront={card.cardFront}
-     isFlipped={card.isFlipped}
-     isMatched={card.isMatched}
-     onClick={() => handleClick(card)}
-    />
-   ))}
+  <div className="relative">
+   {showStartMessage && (
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-10">
+     <div className="bg-zinc-800 border-2 border-green-500 rounded-2xl px-12 py-8 text-center">
+      <p className="text-zinc-400 text-sm mb-2">Nu starter</p>
+      <p className="text-4xl font-bold text-green-400">
+       Spiller {currentPlayer}
+      </p>
+     </div>
+    </div>
+   )}
+   <div className="grid grid-cols-4 gap-2">
+    {cards.map((card) => (
+     <Card
+      key={card.id}
+      cardFront={card.cardFront}
+      isFlipped={card.isFlipped}
+      isMatched={card.isMatched}
+      onClick={() => handleClick(card)}
+     />
+    ))}
+   </div>
   </div>
  )
 }
